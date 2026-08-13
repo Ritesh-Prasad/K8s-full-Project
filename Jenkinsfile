@@ -8,11 +8,6 @@ pipeline {
             }
         }
 
-        stage('Checkout Code') {
-            steps {
-                git 'https://github.com/Ritesh-Prasad/K8s-full-Project.git'
-            }
-        }
 
         stage('Build Docker Image') {
             steps {
@@ -23,8 +18,8 @@ pipeline {
         stage('Tag & Push Docker Image') {
             steps {
                 withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
-                    sh 'docker tag portfolio riteshprasad07/myportfolio:v2'
-                    sh 'docker push riteshprasad07/myportfolio:v2'
+                    sh 'docker tag portfolio riteshprasad07/myportfolio:v3'
+                    sh 'docker push riteshprasad07/myportfolio:v3'
                 }
             }
         }
