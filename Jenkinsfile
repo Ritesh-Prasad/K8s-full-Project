@@ -1,19 +1,37 @@
 pipeline {
+
     agent any
 
+    environment {
+        IMAGE_NAME = "riteshprasad07/portfolio"
+    }
+
     stages {
-        stage('build image'){
-            steps{
-                sh 'docker build -t portfolio .'
+
+        stage('Checkout') {
+            steps {
+                git branch: 'master',
+                    credentialsId: 'github',
+                    url: 'https://github.com/Ritesh-Prasad/K8s-full-Project.git'
             }
         }
-        stage('Tag & Push'){
-            steps{
-                withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
-                    sh 'docker tag portfolio riteshprasad07/myportfolio:v3'
-                    sh 'docker push riteshprasad07/myportfolio:v3'
+
+        stage('SonarQube Scan') {
+            steps {
+                withSonarQubeEnv('sonarqube') {
+                    sh 'sonar-scanner'
                 }
             }
         }
+
+        stage('Docker Build') {
+            steps {
+                sh '''
+                    docker build \
+                    -t $IMAGE_NAME:$BUILD_NUMBER .
+                '''
+            }
+        }
+
     }
 }
