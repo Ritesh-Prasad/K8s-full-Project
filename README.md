@@ -14,11 +14,19 @@ This project demonstrates an end-to-end DevSecOps and GitOps pipeline using Jenk
 ## Screenshots
 
 <img src="images/image9.png" alt="Project screenshot 1" width="800">
+
 <img src="images/image6.png" alt="Project screenshot 2" width="800">
+
 <img src="images/image1.png" alt="Project screenshot 3" width="800">
+
 <img src="images/image2.png" alt="Project screenshot 4" width="800">
+
 <img src="images/image3.png" alt="Project screenshot 5" width="800">
+
 <img src="images/image4.png" alt="Project screenshot 6" width="800">
+
 <img src="images/image5.png" alt="Project screenshot 7" width="800">
+
 <img src="images/image7.png" alt="Project screenshot 8" width="800">
+
 <img src="images/image8.png" alt="Project screenshot 9" width="800">
