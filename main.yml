@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: cont1
-        image: riteshprasad07/myportfolio:v4
+        image: riteshprasad07/myportfolio:v5
         imagePullPolicy: Always
         ports:
         - containerPort: 80
