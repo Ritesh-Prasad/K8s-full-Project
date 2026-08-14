@@ -58,10 +58,10 @@ pipeline {
                     sh '''
                         docker tag \
                         $IMAGE_NAME:$BUILD_NUMBER \
-                        $DOCKER_IMAGE:$BUILD_NUMBER
+                        $DOCKER_IMAGE:v$BUILD_NUMBER
 
                         docker push \
-                        $DOCKER_IMAGE:$BUILD_NUMBER
+                        $DOCKER_IMAGE:v$BUILD_NUMBER
                     '''
                 }
             }
