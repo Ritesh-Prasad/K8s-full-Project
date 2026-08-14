@@ -4,6 +4,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = "riteshprasad07/portfolio"
+        DOCKER_IMAGE = "riteshprasad07/myportfolio"
     }
 
     stages {
@@ -39,6 +40,8 @@ pipeline {
                     /usr/local/bin/trivy \
                     --config /dev/null \
                     image \
+                    --scanners vuln \
+                    --ignorefile /dev/null \
                     --severity HIGH,CRITICAL \
                     --exit-code 1 \
                     $IMAGE_NAME:$BUILD_NUMBER
@@ -46,5 +49,22 @@ pipeline {
             }
         }
 
+        stage('Tag & Push Docker Image') {
+            steps {
+                withDockerRegistry(
+                    credentialsId: 'dockerhub',
+                    url: 'https://index.docker.io/v1/'
+                ) {
+                    sh '''
+                        docker tag \
+                        $IMAGE_NAME:$BUILD_NUMBER \
+                        $DOCKER_IMAGE:$BUILD_NUMBER
+
+                        docker push \
+                        $DOCKER_IMAGE:$BUILD_NUMBER
+                    '''
+                }
+            }
+        }
     }
 }
