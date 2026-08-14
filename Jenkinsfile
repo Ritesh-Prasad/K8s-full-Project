@@ -33,5 +33,18 @@ pipeline {
             }
         }
 
+        stage('Trivy Scan') {
+            steps {
+                sh '''
+                    /usr/local/bin/trivy \
+                    --config /dev/null \
+                    image \
+                    --severity HIGH,CRITICAL \
+                    --exit-code 1 \
+                    $IMAGE_NAME:$BUILD_NUMBER
+                '''
+            }
+        }
+
     }
 }
